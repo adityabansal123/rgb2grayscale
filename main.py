@@ -25,7 +25,7 @@ def upload_file():
 	width = cap.get(cv2.CAP_PROP_FRAME_WIDTH)
 	height = cap.get(cv2.CAP_PROP_FRAME_HEIGHT)
 	fourcc = cv2.VideoWriter_fourcc(*"XVID")
-    	out = cv2.VideoWriter(os.path.join(app.config['UPLOAD_FOLDER'], 'aditya.mp4'), fourcc, 20.0, (int(width), int(height)))
+    	out = cv2.VideoWriter(os.path.join(app.config['UPLOAD_FOLDER'], 'gray '+filename), fourcc, 20.0, (int(width), int(height)))
 	while(True):
 	    ret, frame = cap.read()
 	    if ret == True:
@@ -35,12 +35,12 @@ def upload_file():
 		break
 	cap.release()
 	out.release()
-	return redirect(url_for('uploaded_file', filename='aditya.mp4'))
+	return redirect(url_for('uploaded_file', filename=filename))
     return render_template('index.html') 
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
-    return send_from_directory(app.config['UPLOAD_FOLDER'], 'aditya.mp4')
+    return send_from_directory(app.config['UPLOAD_FOLDER'], 'gray '+filename)
 
 
 if __name__ == '__main__':
