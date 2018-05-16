@@ -1,0 +1,66 @@
+<!Doctype html>
+<html>
+	<head>
+		<title>Upload new File</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<style type="text/css">
+			.backset{
+				background:url("static/back.jpg");
+				background-size: 100% 100%;
+				background-repeat: no-repeat;
+				height: 100%;
+				width:100%;
+				position: fixed;
+				z-index: -1;
+			}
+			.main{
+				max-width: 400px;
+				border:1px solid #DDD;
+				margin: auto;
+				
+				
+				line-height: 30px;
+				background-color: #fbfbfb61;
+				border-radius: 10px;
+				text-align: center;
+				margin-top: 80px;
+				min-height: 400px;
+				
+			}
+			.set-heading{
+			    color: white;
+    			font-weight: 700;
+    			background-color: #5cb85c;
+    			margin-top: -1px;
+    			margin-left: -1px;
+    			margin-right: -1px;
+    			border-radius: 10px 10px 0px 0px;
+    			padding: 10px;
+			}
+			[hidden] {
+ 				 display: none !important;
+			}
+			.set-style{
+				padding: 20px;
+				margin: 10px;
+			}
+		</style>
+	</haed>
+	<body>
+		<div class="backset"></div>
+			<div class="container">
+				<div class="main">
+					<h1 class="set-heading">Upload File</h1>
+					<form action="" method="post" enctype="multipart/form-data">
+						<div class="form-group set-style">
+							<label class="btn btn-default btn-lg">
+   							 Choose File <input type="file" hidden>
+							</label>
+							<button type="submit" class="btn btn-success btn-lg" value=""/>Upload</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		
+	</body>
+</html>
