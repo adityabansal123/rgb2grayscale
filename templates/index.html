@@ -2,11 +2,13 @@
 <html>
 	<head>
 		<title>Upload new File</title>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
 		<style type="text/css">
 			.backset{
 				background:url("static/back.jpg");
-				background-size: 100% 100%;
+				background-size: 100% 120%;
 				background-repeat: no-repeat;
 				height: 100%;
 				width:100%;
@@ -44,6 +46,9 @@
 				padding: 20px;
 				margin: 10px;
 			}
+			.set-style button{
+				margin: 10px;
+			}
 		</style>
 	</haed>
 	<body>
@@ -53,14 +58,45 @@
 					<h1 class="set-heading">Upload File</h1>
 					<form action="" method="post" enctype="multipart/form-data">
 						<div class="form-group set-style">
-							<label class="btn btn-default btn-lg">
-   							 Choose File <input type="file" name="file" hidden>
-							</label>
+							<div class="input-group">
+                <label class="input-group-btn">
+                    <span class="btn btn-success">
+                        Browse&hellip; <input type="file" name="file" style="display: none;" multiple>
+                    </span>
+                </label>
+                <input type="text" class="form-control" readonly>
+            </div>
 							<button type="submit" class="btn btn-success btn-lg" value=""/>Upload</button>
 						</div>
 					</form>
 				</div>
 			</div>
-		
+		<script>$(function() {
+
+  // We can attach the `fileselect` event to all file inputs on the page
+  $(document).on('change', ':file', function() {
+    var input = $(this),
+        numFiles = input.get(0).files ? input.get(0).files.length : 1,
+        label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+    input.trigger('fileselect', [numFiles, label]);
+  });
+
+  // We can watch for our custom `fileselect` event like this
+  $(document).ready( function() {
+      $(':file').on('fileselect', function(event, numFiles, label) {
+
+          var input = $(this).parents('.input-group').find(':text'),
+              log = numFiles > 1 ? numFiles + ' files selected' : label;
+
+          if( input.length ) {
+              input.val(log);
+          } else {
+              if( log ) alert(log);
+          }
+
+      });
+  });
+  
+});</script>
 	</body>
 </html>
